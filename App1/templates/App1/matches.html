@@ -1,0 +1,25 @@
+{% load static %}
+
+
+<!DOCTYPE HTML>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <title>Матчи</title>
+    </head>
+    <body>
+        <button style="width:200px; height:200px; border: 1px solid black;">
+            <img style="width:200px; height:200px" src="{% static 'App1/images/basket.png' %}" alt="Корзина">
+        </button>
+        {% for match in Match %}
+            <div style="height:200px; width:500px; border: 1px solid black; background: green">
+                <p>{{ match.year }}</p>
+                <p>{{ match.day }}</p>
+                <p>{{ match.time }}</p>
+                <p>{{ match.side1 }} vs {{ match.side2 }}</p>
+                <a href="App1/{{ match.name }}">Купить билеты</a>
+            </div>
+        {% endfor %}
+    </body>
+
+</html>

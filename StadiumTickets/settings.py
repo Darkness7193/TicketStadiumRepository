@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'StadiumTickets.wsgi.application'
 DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'StadiumTickets',
+       'NAME': 'siteDB',
        'USER': 'Superuser',
        'PASSWORD': '1',
        'HOST': 'localhost',

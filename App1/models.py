@@ -6,6 +6,9 @@ class User(Model):
     number = CharField(max_length=10)
     email = CharField(max_length=20)
 
+    def __str__(self):
+        return self.requisites
+
 
 class Stadium(Model):
     name = CharField(max_length=20)
@@ -14,6 +17,9 @@ class Stadium(Model):
     city = CharField(max_length=20)
     region = CharField(max_length=20)
     country = CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
 
 
 class Match(Model):
@@ -28,10 +34,16 @@ class Match(Model):
     day = IntegerField(null=True)
     time = TimeField(null=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Sector(Model):
     name = CharField(max_length=20)
     price = IntegerField(null=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Place(Model):
@@ -40,9 +52,15 @@ class Place(Model):
     count = IntegerField()
     stadium = ForeignKey(Stadium, on_delete=CASCADE)
 
+    def __str__(self):
+        return self.row
+
 
 class Ticket(Model):
     host = ForeignKey(User, default=SET_NULL, on_delete=SET_NULL, null=True)
     QR_code = CharField(max_length=1)
     place = ForeignKey(Place, on_delete=CASCADE)
     match = ForeignKey(Match, on_delete=CASCADE)
+
+    def __str__(self):
+        return str(self.place) + str(self.match)
