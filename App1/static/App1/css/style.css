@@ -1,0 +1,16 @@
+.child {
+    display:inline-block;
+    vertical-align:middle;
+}
+.helper {
+    display:inline-block;
+    vertical-align:middle;
+    height:100%;
+    width:0px;
+}
+
+.ticket {
+    height:200px;
+    width:500px; border: 1px solid black;
+    background: green
+}
