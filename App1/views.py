@@ -1,14 +1,10 @@
-from django.http import HttpResponse
 from django.shortcuts import render
-from .models import Match
+from .models import Match, Place
 import psycopg2
 
 conn = psycopg2.connect(dbname='siteDB', user='Superuser', password='1', host='localhost', port='5433')
 cursor = conn.cursor()
 execute = cursor.execute
-
-cursor.execute("select relname from pg_class where relkind='r' and relname !~ '^(pg_|sql_)';")
-print(list(cursor.fetchall()))
 
 
 def index(request):
@@ -16,13 +12,25 @@ def index(request):
 
 
 def focusMatch(request):
-    match_name = request.GET['match_name']
-    execute('SELECT * FROM match WHERE (name = %s);', (match_name, ))
-    match_attrs = cursor.fetchone()
+    get_focus_match = 'SELECT * FROM match WHERE (id = %s);'
+    execute(get_focus_match, (request.GET['focus_match_id'], ))
+    focus_match = cursor.fetchone()
 
-    return render(request, 'App1/focusMatch.html', {'match_data': match_attrs})
+    context = {
+        'focus_match': focus_match,
+        'places': Place.objects.all()
+    }
+    return render(request, 'App1/focusMatch.html', context)
 
 
 def matchesPage(request):
-    matches = Match.objects.all()
-    return render(request, 'App1/matchesPage.html', {'matches': matches})
+    context = {'matches': Match.objects.all()}
+    return render(request, 'App1/matchesPage.html', context)
+
+
+def basket(request):
+    context = {
+        'focus_match_id': request.GET['focus_match_id'],
+        'focus_place_id': request.GET['focus_place_id'],
+    }
+    return render(request, 'App1/basket.html', context)

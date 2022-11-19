@@ -6,9 +6,11 @@
 </head>
 <body>
     <p> {{ request.GET.match_name }}</p>
-    <p> {{ match_attrs }} </p>
-
+    <p> Атрибуты матча: {{ focus_match }} </p>
     {% for place in places %}
+        <a href="/App1/basket?focus_place_id='{{ place.id }}'&focus_match_id='{{ focus_match.id }}">
+            <button>Купить</button>
+        </a>
 
     {% endfor %}
 </body>

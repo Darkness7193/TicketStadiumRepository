@@ -54,7 +54,8 @@ class Place(Model):
     stadium = ForeignKey(Stadium, on_delete=CASCADE)
 
     def __str__(self):
-        return str(self.row)
+        return f'{self.sector} сектор, {self.row} ряд {self.count} место'
+
 
     class Meta:
         db_table = 'place'
