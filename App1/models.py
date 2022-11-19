@@ -1,16 +1,5 @@
-from django.db.models import ForeignKey, Model, CharField, IntegerField, TimeField, CASCADE, FloatField, SET_NULL
-
-
-class User(Model):
-    requisites = CharField(max_length=20)
-    number = CharField(max_length=10)
-    email = CharField(max_length=20)
-
-    def __str__(self):
-        return self.requisites
-
-    class Meta:
-        db_table = 'user'
+from django.db.models import (ForeignKey, Model, CharField, IntegerField, TimeField,
+                              CASCADE, FloatField, SET_NULL, ManyToManyField)
 
 
 class Stadium(Model):
@@ -71,9 +60,8 @@ class Place(Model):
         db_table = 'place'
 
 
-class Ticket(Model):
-    host = ForeignKey(User, default=SET_NULL, on_delete=SET_NULL, null=True)
-    QR_code = CharField(max_length=1)
+class Order(Model):
+    ticket = CharField(max_length=1)
     place = ForeignKey(Place, on_delete=CASCADE)
     match = ForeignKey(Match, on_delete=CASCADE)
 
@@ -81,4 +69,18 @@ class Ticket(Model):
         return str(self.place) + str(self.match)
 
     class Meta:
-        db_table = 'ticket'
+        db_table = 'order'
+
+
+class User(Model):
+    requisites = CharField(max_length=20)
+    number = CharField(max_length=10)
+    email = CharField(max_length=20)
+    unpaid_orders = ManyToManyField(Order, related_name="unpaid_orders")
+    paid_orders = ManyToManyField(Order, related_name="paid_orders")
+
+    def __str__(self):
+        return self.requisites
+
+    class Meta:
+        db_table = 'user'
