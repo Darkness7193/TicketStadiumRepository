@@ -9,5 +9,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.index, name=''),
-    path('/matches/', views.matches),
+    path('/matches/', views.matchesPage),
+    path('/focusMatch/', views.focusMatch)
 ]

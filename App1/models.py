@@ -9,6 +9,9 @@ class User(Model):
     def __str__(self):
         return self.requisites
 
+    class Meta:
+        db_table = 'user'
+
 
 class Stadium(Model):
     name = CharField(max_length=20)
@@ -20,6 +23,9 @@ class Stadium(Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        db_table = 'stadium'
 
 
 class Match(Model):
@@ -37,6 +43,9 @@ class Match(Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        db_table = 'match'
+
 
 class Sector(Model):
     name = CharField(max_length=20)
@@ -44,6 +53,9 @@ class Sector(Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        db_table = 'sector'
 
 
 class Place(Model):
@@ -53,7 +65,10 @@ class Place(Model):
     stadium = ForeignKey(Stadium, on_delete=CASCADE)
 
     def __str__(self):
-        return self.row
+        return str(self.row)
+
+    class Meta:
+        db_table = 'place'
 
 
 class Ticket(Model):
@@ -64,3 +79,6 @@ class Ticket(Model):
 
     def __str__(self):
         return str(self.place) + str(self.match)
+
+    class Meta:
+        db_table = 'ticket'

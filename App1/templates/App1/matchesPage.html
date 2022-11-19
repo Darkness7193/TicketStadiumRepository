@@ -1,0 +1,31 @@
+{% load static %}
+
+
+<!DOCTYPE HTML>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <title>Матчи</title>
+        <link rel="stylesheet" href="{% static 'App1/css/style.css' %}">
+    </head>
+    <body>
+        <button style="width:200px; height:200px; border: 1px solid black;">
+            <img style="width:200px; height:200px" src="{% static 'App1/images/basket.png' %}" alt="Корзина">
+        </button>
+        {% for match in matches %}
+            <div class="ticket">
+                <div class="child">
+                    <p>{{ match.year }}</p>
+                    <p>{{ match.day }}</p>
+                    <p>{{ match.time }}</p>
+                </div>
+                <div class="child">
+                    <p>{{ match.side1 }} vs {{ match.side2 }}</p>
+                    <a href="/App1/focusMatch?match_name={{ match.name }}">Купить билеты</a>
+                </div>
+                <div class="helper"></div>
+            </div>
+        {% endfor %}
+    </body>
+
+</html>
