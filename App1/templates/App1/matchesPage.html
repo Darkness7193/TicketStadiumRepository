@@ -11,21 +11,17 @@
     <body>
         <a href="/App1/basket">
             <button class="basket_button">
-                <img style="width:200px; height:200px" src="{% static 'App1/images/basket.png' %}" alt="Корзина">
+                <img class="basket_image" src="{% static 'App1/images/basket.png' %}" alt="Корзина">
             </button>
         </a>
         {% for match in matches %}
 
             <div class="ticket">
-                <div class="H_child">
-                    <p>{{ match.date|date:"d-m-y" }}</p>
-                    <p>{{ match.time|time:"G:i" }}</p>
-                </div>
-                <div class="H_child">
-                    <p>{{ match.side1 }} vs {{ match.side2 }}</p>
-                    <a href="/App1/focusMatch?focus_match_id={{ match.id }}">Купить билеты</a>
-                </div>
-                <div class="H_helper"></div>
+                <b>{{ match.name }}.</b>
+                <b>{{ match.side1 }} - {{ match.side2 }}</b>
+                <p> {{ match.stadium.name }}</p>
+                <p>{{ match.date|date:"d.m.y" }} {{ match.time|time:"G:i" }}</p>
+                <a href="/App1/focusMatch?focus_match_id={{ match.id }}">Купить билеты</a>
             </div>
         {% endfor %}
     </body>

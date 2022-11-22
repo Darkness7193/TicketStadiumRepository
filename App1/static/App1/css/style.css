@@ -1,22 +1,22 @@
 .G_child {
-    display:inline-block;
-    vertical-align:middle;
+    display: inline-block;
+    vertical-align: middle;
 }
 .G_helper {
-    display:inline-block;
-    vertical-align:middle;
-    height:100%;
-    width:0px;
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+    width: 0px;
 }
 
 .H_child {
-    display:inline-block;
+    display: inline-block;
 }
 
 .H_helper {
-    display:inline-block;
-    width:100%;
-    height:0px;
+    display: inline-block;
+    width: 100%;
+    height: 0px;
 }
 
 .ticket {
@@ -33,7 +33,12 @@
 }
 
 .basket_button {
-    width:200px;
-    height:200px;
+    width: 200px;
+    height: 200px;
     border: 1px solid black;
+}
+
+.basket_image {
+    width: 100%;
+    height: 100%;
 }

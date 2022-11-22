@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{% static 'App1/css/style.css' %}">
 </head>
 <body>
-
+        <p> {{ r }}</p>
     <form method="post">
         {% csrf_token %}
         <input type="text" name="requisites" minlength="10" maxlength="10" placeholder="Введите номер банковской карты">

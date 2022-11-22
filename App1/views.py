@@ -4,8 +4,8 @@ from .models import Match, Place, Order, User
 
 def index(request):
     if request.method == 'POST':
-        data = request.POST
-        inputer = data.get
+        requisites = request.POST.get('requisites')
+        user = User(requisites=requisites)
         return redirect('App1/matchesPage/')
 
     return render(request, 'App1/index.html')
