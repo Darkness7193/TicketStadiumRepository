@@ -1,5 +1,5 @@
 from django.db.models import (ForeignKey, Model, CharField, IntegerField, TimeField,
-                              CASCADE, FloatField, SET_NULL, ManyToManyField)
+                              CASCADE, FloatField, SET_NULL, ManyToManyField, BooleanField)
 
 
 class Stadium(Model):
@@ -62,9 +62,10 @@ class Place(Model):
 
 
 class Order(Model):
-    ticket = CharField(max_length=1)
+    ticket = CharField(max_length=20, null=True)
     place = ForeignKey(Place, on_delete=CASCADE)
     match = ForeignKey(Match, on_delete=CASCADE)
+    is_paid = BooleanField(default=False)
 
     def __str__(self):
         return str(self.place) + str(self.match)
@@ -77,8 +78,7 @@ class User(Model):
     requisites = CharField(max_length=20)
     number = CharField(max_length=10)
     email = CharField(max_length=20)
-    unpaid_orders = ManyToManyField(Order, related_name="unpaid_orders")
-    paid_orders = ManyToManyField(Order, related_name="paid_orders")
+    orders = ManyToManyField(Order, related_name="orders")
 
     def __str__(self):
         return self.requisites

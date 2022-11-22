@@ -5,6 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-    <a href="/App1/matches"> matches </a>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="requisites" minlength="10" maxlength="10">
+        <a href="/App1/matchesPage?user={{ form.requisites.value }}">
+            <button>Перейти к просмотру матчей {{ place }}</button>
+        </a>
+    </form>
+
+
 </body>
 </html>

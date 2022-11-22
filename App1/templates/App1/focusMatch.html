@@ -5,13 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-    <p> {{ request.GET.match_name }}</p>
-    <p> Атрибуты матча: {{ focus_match }} </p>
     {% for place in places %}
-        <a href="/App1/basket?focus_place_id='{{ place.id }}'&focus_match_id='{{ focus_match.id }}">
-            <button>Купить</button>
+        <a href="/App1/basket?focus_place_id={{ place.id }}&focus_match_id={{ focus_match.id }}">
+            <button>Купить {{ place }}</button>
         </a>
-
     {% endfor %}
 </body>
 </html>
