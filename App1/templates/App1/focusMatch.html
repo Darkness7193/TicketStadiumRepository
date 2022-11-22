@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <div class="match_card">
+    <div class="match-ticket--main">
         <p>{{ focus_match.name }}. {{ focus_match.side1 }} - {{ focus_match.side2 }}</p>
         <p>{{ focus_match.stadium }}</p>
         <p>{{ focus_match.date|date:"d.m.y" }} {{ focus_match.time|time:"G:i" }}</p>
@@ -18,8 +18,8 @@
     <div>
         {% for place in places %}
             <a href="/App1/basket?focus_place_id={{ place.id }}&focus_match_id={{ focus_match.id }}">
-                <button class="H_child">Купить {{ place }}</button>
-                <div class="H_helper"></div>
+                <button class="child--H">Оформить заказ {{ place }}</button>
+                <div class="helper--H"></div>
             </a>
         {% endfor %}
     </div>

@@ -1,44 +1,46 @@
-.G_child {
+.child--G {
     display: inline-block;
     vertical-align: middle;
 }
-.G_helper {
+.helper--G {
     display: inline-block;
     vertical-align: middle;
     height: 100%;
     width: 0px;
 }
 
-.H_child {
+.child--H {
     display: inline-block;
 }
 
-.H_helper {
+.helper--H {
     display: inline-block;
     width: 100%;
     height: 0px;
 }
 
-.ticket {
-    height:200px;
-    width:500px; border: 1px solid black;
-    background: green
+.match-ticket {
+    height:150px;
+    width:500px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background: green;
 }
 
-.match_card {
+.match-ticket--main {
     background: gray;
     border-radius: 5px;
     max-width: 500px;
     min-width: 400px;
 }
 
-.basket_button {
+.button {
     width: 200px;
     height: 200px;
     border: 1px solid black;
 }
 
-.basket_image {
+.button-image {
     width: 100%;
     height: 100%;
 }

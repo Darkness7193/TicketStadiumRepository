@@ -10,13 +10,13 @@
     </head>
     <body>
         <a href="/App1/basket">
-            <button class="basket_button">
-                <img class="basket_image" src="{% static 'App1/images/basket.png' %}" alt="Корзина">
+            <button class="button">
+                <img class="button-image" src="{% static 'App1/images/basket.png' %}" alt="Корзина">
             </button>
         </a>
         {% for match in matches %}
 
-            <div class="ticket">
+            <div class="match-ticket">
                 <b>{{ match.name }}.</b>
                 <b>{{ match.side1 }} - {{ match.side2 }}</b>
                 <p> {{ match.stadium.name }}</p>

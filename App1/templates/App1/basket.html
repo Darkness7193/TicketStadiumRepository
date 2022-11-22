@@ -8,11 +8,20 @@
     <link rel="stylesheet" href="{% static 'App1/css/style.css' %}">
 </head>
 <body>
-    {% for order in orders %}
-        <p> ------------------- </p>
-        {{ order.place }}
-        {{ order.match }}
-    {% endfor %}
+    <table>
+        <tr> <td>Заказ</td> <td>Цена</td> <td>Удалить</td> </tr>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order }}</td>
+                <td>{{ order.sector.price }}</td>
+                <td>
+                    <button>
+                        <img src="{% static 'App1/images/basket.png' %}" alt="Удалить">
+                    </button>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
 
 </body>
 </html>

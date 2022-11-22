@@ -11,7 +11,8 @@
         <p> {{ r }}</p>
     <form method="post">
         {% csrf_token %}
-        <input type="text" name="requisites" minlength="10" maxlength="10" placeholder="Введите номер банковской карты">
+        <label> Введите номер банковской карты </label>
+        <input type="text" name="requisites" minlength="10" maxlength="10">
         <button type="submit"> Перейти к матчам</button>
     </form>
     <a href="/admin"> to_admin</a>
