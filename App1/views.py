@@ -6,6 +6,7 @@ def index(request):
     if request.method == 'POST':
         requisites = request.POST.get('requisites')
         user = User(requisites=requisites)
+        user.save()
         return redirect('App1/matchesPage/')
 
     return render(request, 'App1/index.html')
