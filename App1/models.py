@@ -68,7 +68,7 @@ class Order(Model):
     is_paid = BooleanField(default=False)
 
     def __str__(self):
-        return str(self.place) + str(self.match)
+        return str(self.id)
 
     class Meta:
         db_table = 'order'

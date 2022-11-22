@@ -8,16 +8,14 @@ execute = cursor.execute
 '''
 
 def index(request):
-    if request.method == 'POST':
-        data = request.POST
-        inputer = data.get
-    else:
-        return render(request, 'App1/index.html')
+    return render(request, 'App1/index.html')
 
 
 def focusMatch(request):
+    data = request.GET
+
     context = {
-        'focus_match': Match.objects.filter(id=request.GET['focus_match_id'])[0], #!!!
+        'focus_match': Match.objects.filter(id=data['focus_match_id'])[0],
         'places': Place.objects.all()
     }
     return render(request, 'App1/focusMatch.html', context)
@@ -36,6 +34,5 @@ def basket(request):
                   match=Match.objects.get(id=match_id))
     new_order.save()
 
-    user_orders = User.objects.filter(requisites = current_user)
     context = {'new_order': new_order}
     return render(request, 'App1/basket.html', context)
