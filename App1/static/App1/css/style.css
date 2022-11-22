@@ -1,12 +1,22 @@
-.child {
+.G_child {
     display:inline-block;
     vertical-align:middle;
 }
-.helper {
+.G_helper {
     display:inline-block;
     vertical-align:middle;
     height:100%;
     width:0px;
+}
+
+.H_child {
+    display:inline-block;
+}
+
+.H_helper {
+    display:inline-block;
+    width:100%;
+    height:0px;
 }
 
 .ticket {
@@ -20,4 +30,10 @@
     border-radius: 5px;
     max-width: 500px;
     min-width: 400px;
+}
+
+.basket_button {
+    width:200px;
+    height:200px;
+    border: 1px solid black;
 }

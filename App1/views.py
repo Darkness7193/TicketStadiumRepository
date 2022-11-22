@@ -27,12 +27,14 @@ def matchesPage(request):
 
 
 def basket(request):
-    match_id = int(request.GET['focus_match_id'])
-    place_id = int(request.GET['focus_place_id'])
-    new_order = Order(ticket=None,
-                  place=Place.objects.get(id=place_id),
-                  match=Match.objects.get(id=match_id))
-    new_order.save()
+    data = request.GET
+    match_id = data.get('focus_match_id', None)
+    place_id = data.get('focus_place_id', None)
+    if match_id and place_id:
+        new_order = Order(ticket=None,
+                      place=Place.objects.get(id=int(place_id)),
+                      match=Match.objects.get(id=int(match_id)))
+        new_order.save()
 
     context = {'orders': Order.objects.all()}
     return render(request, 'App1/basket.html', context)
