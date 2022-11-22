@@ -14,3 +14,10 @@
     width:500px; border: 1px solid black;
     background: green
 }
+
+.match_card {
+    background: gray;
+    border-radius: 5px;
+    max-width: 500px;
+    min-width: 400px;
+}

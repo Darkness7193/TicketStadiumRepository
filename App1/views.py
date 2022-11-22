@@ -1,13 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Match, Place, Order, User
-'''
-import psycopg2
-conn = psycopg2.connect(dbname='siteDB', user='Superuser', password='1', host='localhost', port='5433')
-cursor = conn.cursor()
-execute = cursor.execute
-'''
+
 
 def index(request):
+    if request.method == 'POST':
+        data = request.POST
+        inputer = data.get
+        return redirect('App1/matchesPage/')
+
     return render(request, 'App1/index.html')
 
 
@@ -34,5 +34,5 @@ def basket(request):
                   match=Match.objects.get(id=match_id))
     new_order.save()
 
-    context = {'new_order': new_order}
+    context = {'orders': Order.objects.all()}
     return render(request, 'App1/basket.html', context)

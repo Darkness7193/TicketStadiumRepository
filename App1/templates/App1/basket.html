@@ -1,11 +1,18 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{% static 'App1/css/style.css' %}">
 </head>
 <body>
-    <p> {{ new_order }}</p>
+    {% for order in orders %}
+        <p> ------------------- </p>
+        {{ order.place }}
+        {{ order.match }}
+    {% endfor %}
 
 </body>
 </html>
