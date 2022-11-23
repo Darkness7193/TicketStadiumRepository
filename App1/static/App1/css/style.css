@@ -6,7 +6,7 @@
     display: inline-block;
     vertical-align: middle;
     height: 100%;
-    width: 0px;
+    width: 0;
 }
 
 .child--H {
@@ -16,7 +16,7 @@
 .helper--H {
     display: inline-block;
     width: 100%;
-    height: 0px;
+    height: 0;
 }
 
 .match-ticket {
@@ -35,8 +35,8 @@
 }
 
 .button {
-    width: 200px;
-    height: 200px;
+    width: 30px;
+    height: 30px;
     border: 1px solid black;
 }
 
@@ -44,3 +44,4 @@
     width: 100%;
     height: 100%;
 }
+

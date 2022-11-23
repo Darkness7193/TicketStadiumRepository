@@ -27,19 +27,20 @@ def matchesPage(request):
 
 
 def basket(request):
-    data = request.GET
-    match_id = data.get('focus_match_id', None)
-    place_id = data.get('focus_place_id', None)
-    if match_id and place_id:
-        new_order = Order(ticket=None,
-                      place=Place.objects.get(id=int(place_id)),
-                      match=Match.objects.get(id=int(match_id)))
-        new_order.save()
+    if request.method == 'POST':
+        del_order_id = request.POST.get('del_order_id')
+        Order.objects.filter(id=del_order_id).delete()
+        return redirect('/App1/basket')
+    else:
+        data = request.GET
+        match_id = data.get('focus_match_id', None)
+        place_id = data.get('focus_place_id', None)
+        if match_id and place_id:
+            new_order = Order(ticket=None,
+                          place=Place.objects.get(id=int(place_id)),
+                          match=Match.objects.get(id=int(match_id)))
+            new_order.save()
 
-    context = {'orders': Order.objects.all()}
-    return render(request, 'App1/basket.html', context)
+        context = {'orders': Order.objects.all()}
+        return render(request, 'App1/basket.html', context)
 
-
-def deleteOrder(request):
-    del_order = request.GET['del_order']
-    Order.objects.filter(id=del_order.id).delete()

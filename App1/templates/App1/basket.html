@@ -12,12 +12,16 @@
         <tr> <td>Заказ</td> <td>Цена</td> <td>Удалить</td> </tr>
         {% for order in orders %}
             <tr>
-                <td>{{ order }}</td>
-                <td>{{ order.sector.price }}</td>
+                <td>{{ order.place }}</td>
+                <td>{{ order.place.sector.price }}₽</td>
                 <td>
-                    <button class="button" onclick="location.href={% url '/App1/deleteOrder?del_order=tmp'%}">
-                        <img class="button-image" src="{% static 'App1/images/recycle_bin.png' %}" alt="Удалить">
-                    </button>
+                    <form method="post">
+                        {% csrf_token %}
+                        <input hidden="hidden" name="del_order_id" value="{{ order.id }}">
+                        <button class="button" type="submit">
+                            <img class="button-image" src="{% static 'App1/images/recycle_bin.png' %}" alt="Удалить">
+                        </button>
+                    </form>
                 </td>
             </tr>
         {% endfor %}
