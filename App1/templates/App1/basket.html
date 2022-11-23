@@ -15,8 +15,8 @@
                 <td>{{ order }}</td>
                 <td>{{ order.sector.price }}</td>
                 <td>
-                    <button>
-                        <img src="{% static 'App1/images/basket.png' %}" alt="Удалить">
+                    <button class="button" onclick="location.href={% url '/App1/deleteOrder?del_order=tmp'%}">
+                        <img class="button-image" src="{% static 'App1/images/recycle_bin.png' %}" alt="Удалить">
                     </button>
                 </td>
             </tr>

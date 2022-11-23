@@ -38,3 +38,8 @@ def basket(request):
 
     context = {'orders': Order.objects.all()}
     return render(request, 'App1/basket.html', context)
+
+
+def deleteOrder(request):
+    del_order = request.GET['del_order']
+    Order.objects.filter(id=del_order.id).delete()
