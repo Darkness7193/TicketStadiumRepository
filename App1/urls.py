@@ -1,10 +1,11 @@
 from django.urls import path
 
-from . import views
+from .views import basket, matchesPage, focusMatch, add_order
 
 
 urlpatterns = [
-    path('basket/', views.basket),
-    path('matchesPage/', views.matchesPage),
-    path('focusMatch/', views.focusMatch),
+    path('basket/', basket),
+    path('matchesPage/', matchesPage),
+    path('focusMatch/', focusMatch),
+    path('add_order/', add_order),
 ]

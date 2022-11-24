@@ -4,7 +4,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>focusMatch</title>
     <link rel="stylesheet" href="{% static 'App1/css/style.css' %}">
 </head>
 <body>
@@ -17,10 +17,10 @@
 
     <div>
         {% for place in places %}
-            <a href="/App1/basket?focus_place_id={{ place.id }}&focus_match_id={{ focus_match.id }}">
-                <button class="child--H">Оформить заказ {{ place }}</button>
-                <div class="helper--H"></div>
+            <a href="/App1/add_order?place_id={{ place.id }}&match_id={{ focus_match.id }}">
+                <button>Оформить заказ {{ place }}</button>
             </a>
+
         {% endfor %}
     </div>
 </body>

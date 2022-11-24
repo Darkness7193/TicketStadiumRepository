@@ -1,6 +1,5 @@
 from django.db.models import (ForeignKey, Model, CharField, IntegerField, TimeField,
-                              CASCADE, FloatField, SET_NULL, ManyToManyField, BooleanField,
-                              DateField,)
+                              CASCADE, FloatField, SET_NULL, ManyToManyField, BooleanField)
 
 
 class Stadium(Model):
@@ -9,10 +8,10 @@ class Stadium(Model):
     street = CharField(max_length=20)
     city = CharField(max_length=20)
     region = CharField(max_length=20)
-    country = CharField(max_length=20, default="Russia")
+    country = CharField(max_length=20)
 
     def __str__(self):
-        return f'{self.region}, {self.city}, {self.street}: {self.name}'
+        return self.name
 
     class Meta:
         db_table = 'stadium'
@@ -26,14 +25,12 @@ class Match(Model):
     side2 = CharField(max_length=20)
     coefficient = FloatField(default=1)
 
-    date = DateField(null=True)
+    year = IntegerField(null=True)
+    day = IntegerField(null=True)
     time = TimeField(null=True)
 
     def __str__(self):
-        return f'''
-            {self.name} {self.side1} - {self.side2}. {self.stadium.name}
-            {self.date} {self.time}
-        '''
+        return self.name
 
     class Meta:
         db_table = 'match'
@@ -57,11 +54,8 @@ class Place(Model):
     stadium = ForeignKey(Stadium, on_delete=CASCADE)
 
     def __str__(self):
-        return f'''
-            Сектор:{self.sector}, 
-            ряд:{self.row}, 
-            место:{self.count}
-        '''
+        return f'{self.sector} сектор, {self.row} ряд {self.count} место'
+
 
     class Meta:
         db_table = 'place'
@@ -74,20 +68,7 @@ class Order(Model):
     is_paid = BooleanField(default=False)
 
     def __str__(self):
-        return str(self.place)
+        return str(self.id)
 
     class Meta:
         db_table = 'order'
-
-
-class User(Model):
-    requisites = CharField(max_length=20)
-    number = CharField(max_length=10)
-    email = CharField(max_length=20)
-    orders = ManyToManyField(Order, related_name='orders')
-
-    def __str__(self):
-        return self.requisites
-
-    class Meta:
-        db_table = 'user'

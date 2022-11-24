@@ -1,13 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import Match, Place, Order, User
+from .models import Match, Place, Order
 
 
 def index(request):
-    if request.method == 'POST':
-        requisites = request.POST.get('requisites')
-        user = User(requisites=requisites)
-        return redirect('App1/matchesPage/')
-
     return render(request, 'App1/index.html')
 
 
@@ -15,7 +10,7 @@ def focusMatch(request):
     data = request.GET
 
     context = {
-        'focus_match': Match.objects.filter(id=data['focus_match_id'])[0],
+        'focus_match': Match.objects.get(id=int(data['focus_match_id'])),
         'places': Place.objects.all()
     }
     return render(request, 'App1/focusMatch.html', context)
@@ -30,17 +25,19 @@ def basket(request):
     if request.method == 'POST':
         del_order_id = request.POST.get('del_order_id')
         Order.objects.filter(id=del_order_id).delete()
-        return redirect('/App1/basket')
+        return redirect('/App1/basket', permanent=True)
     else:
-        data = request.GET
-        match_id = data.get('focus_match_id', None)
-        place_id = data.get('focus_place_id', None)
-        if match_id and place_id:
-            new_order = Order(ticket=None,
-                          place=Place.objects.get(id=int(place_id)),
-                          match=Match.objects.get(id=int(match_id)))
-            new_order.save()
-
         context = {'orders': Order.objects.all()}
         return render(request, 'App1/basket.html', context)
 
+
+def add_order(request):
+    place_id = request.GET.get('place_id')
+    match_id = request.GET.get('match_id')
+
+    place = Place.objects.get(id = int(place_id))
+    match = Match.objects.get(id = int(match_id))
+
+    order = Order(place=place, match=match)
+    order.save()
+    return redirect('/App1/basket')
