@@ -8,14 +8,18 @@
     <link rel="stylesheet" href="{% static 'App1/css/style.css' %}">
 </head>
 <body>
-        <p> {{ r }}</p>
-    <form method="post">
-        {% csrf_token %}
-        <label> Введите номер банковской карты </label>
-        <input type="text" name="requisites" minlength="10" maxlength="10">
-        <button type="submit"> Перейти к матчам</button>
-    </form>
-    <a href="/admin"> to_admin</a>
+
+    <a href="/App1/matchesPage"> matches </a>
+    <p></p>
+
+    <a href="/admin"> admin </a>
+    <p></p>
+
+    <a href="/ProfilesApp/logIn"> logIn </a>
+    <p></p>
+
+    <a href="/ProfilesApp/signIn"> singIn </a>
+    <p></p>
 
 </body>
 </html>
