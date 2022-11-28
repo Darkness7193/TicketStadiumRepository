@@ -1,0 +1,17 @@
+.scroll-ul {
+    width: 200px;
+    height: 400px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border: 1px solid black;
+    padding: 0;
+    list-style: none;
+}
+
+.match-ticket--main {
+    background: #96D4D4;
+    border-radius: 5px;
+    max-width: 500px;
+    min-width: 400px;
+}
+

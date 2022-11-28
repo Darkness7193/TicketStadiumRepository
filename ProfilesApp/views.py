@@ -45,7 +45,7 @@ def signIn(request):
         if errors:
             for error_content in errors:
                 messages.error(request, error_content)
-            return HttpResponseRedirect(request.path_info)
+            return redirect()
         else:
             user = User(username=username, password=password)
             user.save()

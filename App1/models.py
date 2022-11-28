@@ -1,4 +1,4 @@
-from django.db.models import (ForeignKey, Model, CharField, IntegerField, TimeField,
+from django.db.models import (ForeignKey, Model, CharField, IntegerField, TimeField, DateField,
                               CASCADE, FloatField, SET_NULL, BooleanField)
 from django.contrib.auth.models import User
 
@@ -42,8 +42,7 @@ class Match(Model):
     side1 = CharField(max_length=20)
     side2 = CharField(max_length=20)
     coefficient = FloatField(default=1)
-    year = IntegerField(null=True)
-    day = IntegerField(null=True)
+    date = DateField(null=True)
     time = TimeField(null=True)
 
     def __str__(self):
