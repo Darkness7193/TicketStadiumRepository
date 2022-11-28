@@ -25,10 +25,10 @@
 
     <div>
         <ul class="scroll-ul">
-            {% for place in places %}
+            {% for free_place in free_places %}
                 <li>
-                    <a href="/App1/add_ticket?place_id={{ place.id }}&match_id={{ focus_match.id }}">
-                        <button style="width:100%"> {{ place }} </button>
+                    <a href="/App1/add_ticket?place_id={{ free_place.id }}&match_id={{ focus_match.id }}">
+                        <button style="width:100%"> {{ free_place }} </button>
                     </a>
                 </li>
 

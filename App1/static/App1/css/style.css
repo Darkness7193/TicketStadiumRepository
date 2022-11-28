@@ -13,17 +13,6 @@
     min-width: 400px;
 }
 
-.button {
-    width: 30px;
-    height: 30px;
-    border: 1px solid black;
-}
-
-.button-image {
-    width: 100%;
-    height: 100%;
-}
-
 th, td {
     background: #96D4D4;
 }

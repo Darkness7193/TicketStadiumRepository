@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from django.db.models import Model, OneToOneField, CASCADE, ManyToManyField, CharField
 
-from App1.models import Order
 from StadiumTickets.myShortcuts import MyManager
 
 

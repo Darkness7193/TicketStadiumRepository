@@ -5,6 +5,19 @@ from django.contrib.auth.models import User
 from StadiumTickets.myShortcuts import MyManager
 
 
+class Sector(Model):
+    objects = MyManager()
+
+    shortcut = IntegerField(null=True)
+    price = IntegerField(null=True)
+
+    def __str__(self):
+        return str(self.shortcut)
+
+    class Meta:
+        db_table = 'sector'
+
+
 class Stadium(Model):
     objects = MyManager()
 
@@ -38,19 +51,6 @@ class Match(Model):
 
     class Meta:
         db_table = 'match'
-
-
-class Sector(Model):
-    objects = MyManager()
-
-    shortcut = IntegerField(null=True)
-    price = IntegerField(null=True)
-
-    def __str__(self):
-        return str(self.shortcut)
-
-    class Meta:
-        db_table = 'sector'
 
 
 class Place(Model):

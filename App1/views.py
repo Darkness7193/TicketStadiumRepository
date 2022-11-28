@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Match, Place, Ticket
+from StadiumTickets.myShortcuts import list_to_queryset
 
 
 def index(request):
@@ -9,16 +10,12 @@ def index(request):
 def focusMatch(request):
     data = request.GET
     focus_match = Match.objects.get(id=int(data['focus_match_id']))
-
-    for ticket in Ticket.objects.filter(match=focus_match):
-        if ticket:
-            pass
-
-    free_places = Place.objects.filter()
+    reserved_places = [ticket.place.pk for ticket in Ticket.objects.filter(match=focus_match)]
+    free_places = Place.objects.exclude(pk__in=reserved_places)
 
     context = {
         'focus_match': focus_match,
-        'places': free_places,
+        'free_places': list(free_places),
     }
     return render(request, 'App1/focusMatch.html', context)
 

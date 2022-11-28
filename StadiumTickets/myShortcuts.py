@@ -15,3 +15,7 @@ def get_or_none(model, **kwargs):
         return model.objects.get(**kwargs)
     except ObjectDoesNotExist:
         return None
+
+
+def list_to_queryset(model, lst):
+    return model.objects.filter(id__in=lst)
