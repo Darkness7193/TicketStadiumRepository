@@ -16,29 +16,24 @@
         <p>{{ focus_match.date|date:"d.m.y" }} {{ focus_match.time|time:"G:i" }}</p>
     </div>
 
-    <div>
-        <table>
-            <tr>
-                <th> Сектор </th>
-                <th> Цена </th>
-                <th> Заказать </th>
-            </tr>
-            {% for sector in sectors %}
-                <tr>
-                    <td> sector.shortcut </td>
-                    <td> sector.price </td>
-                    <td>
-                        <a href="/App1/take_free_order?sector_id={{ sector.id }}&match_id={{ focus_match.id }}">
-                            <button class="button">
-                                <img class="button-image" src="{% static '/App1/images/coin.png' %}">
-                            </button>
-                        </a>
-                    </td>
-                </tr>
+    <form>
+        <input type="text" placeholder="Поиск" name="search">
+        <button class="button" type="submit">
+            <img class="button-image" src="{% static 'App1/images/search_icon.png' %}" alt="Иконка лупы поиска">
+        </button>
+    </form>
 
+    <div>
+        <ul class="scroll-ul">
+            {% for place in places %}
+                <li>
+                    <a href="/App1/add_ticket?place_id={{ place.id }}&match_id={{ focus_match.id }}">
+                        <button style="width:100%"> {{ place }} </button>
+                    </a>
+                </li>
 
             {% endfor %}
-        </table>
+        </ul>
     </div>
 </body>
 </html>

@@ -9,17 +9,17 @@
     <title>Корзина</title>
 </head>
 <body>
-    <p> Неоплаченные заказы: </p>
+    <p> Неоплаченные билеты: </p>
     <table>
-        <tr> <th>Заказ</th> <th>Цена</th> <th>Удалить</th> </tr>
-        {% for order in unpaid_orders %}
+        <tr> <th>Билет</th> <th>Цена</th> <th>Удалить</th> </tr>
+        {% for ticket in unpaid_tickets %}
             <tr>
-                <td>{{ order.place }}</td>
-                <td>{{ order.place.sector.price }}₽</td>
+                <td>{{ ticket.place }}</td>
+                <td>{{ ticket.place.sector.price }}₽</td>
                 <td>
                     <form method="post">
                         {% csrf_token %}
-                        <input hidden="hidden" name="del_order_id" value="{{ order.id }}">
+                        <input hidden="hidden" name="del_ticket_id" value="{{ ticket.id }}">
                         <button class="button" type="submit">
                             <img class="button-image" src="{% static 'App1/images/recycle_bin.png' %}" alt="Удалить">
                         </button>
@@ -31,17 +31,17 @@
 
     <p></p>
 
-    <p> Оплаченные заказы: </p>
+    <p> Оплаченные билеты: </p>
     <table>
-        <tr> <th>Заказ</th> <th>Цена</th> <th>Удалить</th> </tr>
-        {% for order in paid_orders %}
+        <tr> <th>Билет</th> <th>Цена</th> <th>Удалить</th> </tr>
+        {% for ticket in paid_tickets %}
             <tr>
-                <td>{{ order.place }}</td>
-                <td>{{ order.place.sector.price }}₽</td>
+                <td>{{ ticket.place }}</td>
+                <td>{{ ticket.place.sector.price }}₽</td>
                 <td>
                     <form method="post">
                         {% csrf_token %}
-                        <input hidden="hidden" name="del_order_id" value="{{ order.id }}">
+                        <input hidden="hidden" name="del_ticket_id" value="{{ ticket.id }}">
                         <button class="button" type="submit">
                             <img class="button-image" src="{% static 'App1/images/recycle_bin.png' %}" alt="Удалить">
                         </button>

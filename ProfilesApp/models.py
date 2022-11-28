@@ -11,7 +11,6 @@ class Profile(Model):
 
     user = OneToOneField(User, on_delete=CASCADE)
     requisites = CharField(max_length=20)
-    orders = ManyToManyField(Order, related_name='orders')
 
     def __str__(self):
         return self.requisites

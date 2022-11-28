@@ -1,6 +1,6 @@
 from django.db.models import (ForeignKey, Model, CharField, IntegerField, TimeField,
                               CASCADE, FloatField, SET_NULL, BooleanField)
-
+from django.contrib.auth.models import User
 
 from StadiumTickets.myShortcuts import MyManager
 
@@ -62,17 +62,15 @@ class Place(Model):
     stadium = ForeignKey(Stadium, on_delete=CASCADE)
 
     def __str__(self):
-        return f'{self.sector} сектор, {self.row} ряд {self.count} место'
-
+        return f'{self.sector} сектор, {self.row} ряд, {self.count} место'
 
     class Meta:
         db_table = 'place'
 
 
-class Order(Model):
+class Ticket(Model):
     objects = MyManager()
 
-    ticket = CharField(max_length=20, null=True)
     place = ForeignKey(Place, on_delete=CASCADE)
     match = ForeignKey(Match, on_delete=CASCADE)
     is_paid = BooleanField(default=False)
@@ -81,4 +79,4 @@ class Order(Model):
         return str(self.id)
 
     class Meta:
-        db_table = 'order'
+        db_table = 'ticket'

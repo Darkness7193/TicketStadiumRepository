@@ -27,3 +27,14 @@
 th, td {
     background: #96D4D4;
 }
+
+.scroll-ul {
+    width: 200px;
+    height: 400px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border: 1px solid black;
+    padding: 0;
+    list-style: none;
+}
+
