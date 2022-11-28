@@ -43,11 +43,11 @@ class Match(Model):
 class Sector(Model):
     objects = MyManager()
 
-    name = CharField(max_length=20)
+    shortcut = IntegerField(null=True)
     price = IntegerField(null=True)
 
     def __str__(self):
-        return self.name
+        return str(self.shortcut)
 
     class Meta:
         db_table = 'sector'

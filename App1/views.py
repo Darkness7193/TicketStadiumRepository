@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Match, Place, Order
+from .models import Match, Place, Order, Sector
 
 
 def index(request):
@@ -11,7 +11,8 @@ def focusMatch(request):
 
     context = {
         'focus_match': Match.objects.get(id=int(data['focus_match_id'])),
-        'places': Place.objects.all()
+        'places': Place.objects.all(),
+        'sectors': Sector.objects.all(),
     }
     return render(request, 'App1/focusMatch.html', context)
 

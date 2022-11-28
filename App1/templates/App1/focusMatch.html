@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>focusMatch</title>
     <link rel="stylesheet" href="{% static 'App1/css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/global.css' %}">
 </head>
 <body>
 
@@ -16,12 +17,28 @@
     </div>
 
     <div>
-        {% for place in places %}
-            <a href="/App1/add_order?place_id={{ place.id }}&match_id={{ focus_match.id }}">
-                <button>Оформить заказ {{ place }}</button>
-            </a>
+        <table>
+            <tr>
+                <th> Сектор </th>
+                <th> Цена </th>
+                <th> Заказать </th>
+            </tr>
+            {% for sector in sectors %}
+                <tr>
+                    <td> sector.shortcut </td>
+                    <td> sector.price </td>
+                    <td>
+                        <a href="/App1/take_free_order?sector_id={{ sector.id }}&match_id={{ focus_match.id }}">
+                            <button class="button">
+                                <img class="button-image" src="{% static '/App1/images/coin.png' %}">
+                            </button>
+                        </a>
+                    </td>
+                </tr>
 
-        {% endfor %}
+
+            {% endfor %}
+        </table>
     </div>
 </body>
 </html>
