@@ -4,13 +4,37 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-        <link rel="stylesheet" href="{% static 'App1/css/style.css' %}">
+    <link rel="stylesheet" href="{% static '/css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'App1/css/style.css' %}">
     <title>Корзина</title>
 </head>
 <body>
+    <p> Неоплаченные заказы: </p>
     <table>
-        <tr> <td>Заказ</td> <td>Цена</td> <td>Удалить</td> </tr>
-        {% for order in orders %}
+        <tr> <th>Заказ</th> <th>Цена</th> <th>Удалить</th> </tr>
+        {% for order in unpaid_orders %}
+            <tr>
+                <td>{{ order.place }}</td>
+                <td>{{ order.place.sector.price }}₽</td>
+                <td>
+                    <form method="post">
+                        {% csrf_token %}
+                        <input hidden="hidden" name="del_order_id" value="{{ order.id }}">
+                        <button class="button" type="submit">
+                            <img class="button-image" src="{% static 'App1/images/recycle_bin.png' %}" alt="Удалить">
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <p></p>
+
+    <p> Оплаченные заказы: </p>
+    <table>
+        <tr> <th>Заказ</th> <th>Цена</th> <th>Удалить</th> </tr>
+        {% for order in paid_orders %}
             <tr>
                 <td>{{ order.place }}</td>
                 <td>{{ order.place.sector.price }}₽</td>

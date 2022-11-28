@@ -1,24 +1,3 @@
-.child--G {
-    display: inline-block;
-    vertical-align: middle;
-}
-.helper--G {
-    display: inline-block;
-    vertical-align: middle;
-    height: 100%;
-    width: 0;
-}
-
-.child--H {
-    display: inline-block;
-}
-
-.helper--H {
-    display: inline-block;
-    width: 100%;
-    height: 0;
-}
-
 .match-ticket {
     height:150px;
     width:500px;
@@ -45,3 +24,6 @@
     height: 100%;
 }
 
+th, td {
+    background: #96D4D4;
+}

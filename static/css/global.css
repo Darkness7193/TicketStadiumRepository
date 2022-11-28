@@ -1,0 +1,16 @@
+.order--V {
+    display:flex;
+    flex-direction: column;
+}
+
+.helper--V {
+    order: -1;
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}

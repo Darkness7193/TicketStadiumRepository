@@ -27,7 +27,10 @@ def basket(request):
         Order.objects.filter(id=del_order_id).delete()
         return redirect('/App1/basket', permanent=True)
     else:
-        context = {'orders': Order.objects.all()}
+        context = {
+            'paid_orders': Order.objects.filter(is_paid=True),
+            'unpaid_orders': Order.objects.filter(is_paid=False),
+        }
         return render(request, 'App1/basket.html', context)
 
 

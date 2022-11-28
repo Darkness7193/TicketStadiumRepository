@@ -1,10 +1,14 @@
 from django.db.models import (ForeignKey, Model, CharField, IntegerField, TimeField,
-                              CASCADE, FloatField, SET_NULL, ManyToManyField, BooleanField)
+                              CASCADE, FloatField, SET_NULL, BooleanField)
+
+
+from StadiumTickets.myShortcuts import MyManager
 
 
 class Stadium(Model):
-    name = CharField(max_length=20)
+    objects = MyManager()
 
+    name = CharField(max_length=20)
     street = CharField(max_length=20)
     city = CharField(max_length=20)
     region = CharField(max_length=20)
@@ -18,13 +22,13 @@ class Stadium(Model):
 
 
 class Match(Model):
+    objects = MyManager()
+
     name = CharField(max_length=20)
     stadium = ForeignKey(Stadium, on_delete=CASCADE)
-
     side1 = CharField(max_length=20)
     side2 = CharField(max_length=20)
     coefficient = FloatField(default=1)
-
     year = IntegerField(null=True)
     day = IntegerField(null=True)
     time = TimeField(null=True)
@@ -37,6 +41,8 @@ class Match(Model):
 
 
 class Sector(Model):
+    objects = MyManager()
+
     name = CharField(max_length=20)
     price = IntegerField(null=True)
 
@@ -48,6 +54,8 @@ class Sector(Model):
 
 
 class Place(Model):
+    objects = MyManager()
+
     sector = ForeignKey(Sector, on_delete=SET_NULL, null=True)
     row = IntegerField()
     count = IntegerField()
@@ -62,6 +70,8 @@ class Place(Model):
 
 
 class Order(Model):
+    objects = MyManager()
+
     ticket = CharField(max_length=20, null=True)
     place = ForeignKey(Place, on_delete=CASCADE)
     match = ForeignKey(Match, on_delete=CASCADE)
