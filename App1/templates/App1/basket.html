@@ -9,47 +9,51 @@
     <link rel="stylesheet" href="{% static 'App1/css/basket.css' %}">
 </head>
 <body>
-    <p> Неоплаченные билеты: </p>
-    <table>
-        <tr> <th>Билет</th> <th>Цена</th> <th>Удалить</th> </tr>
-        {% for ticket in unpaid_tickets %}
-            <tr>
-                <td>{{ ticket.place }}</td>
-                <td>{{ ticket.place.sector.price }}₽</td>
-                <td>
-                    <form method="post">
-                        {% csrf_token %}
-                        <input hidden="hidden" name="del_ticket_id" value="{{ ticket.id }}">
-                        <button class="button" type="submit">
-                            <img class="button-image" src="{% static 'App1/images/recycle_bin.png' %}" alt="Удалить">
-                        </button>
-                    </form>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
 
-    <p></p>
+    {% include 'includes/header.html' %}
 
-    <p> Оплаченные билеты: </p>
-    <table>
-        <tr> <th>Билет</th> <th>Цена</th> <th>Удалить</th> </tr>
-        {% for ticket in paid_tickets %}
-            <tr>
-                <td>{{ ticket.place }}</td>
-                <td>{{ ticket.place.sector.price }}₽</td>
-                <td>
-                    <form method="post">
-                        {% csrf_token %}
-                        <input hidden="hidden" name="del_ticket_id" value="{{ ticket.id }}">
-                        <button class="button" type="submit">
-                            <img class="button-image" src="{% static 'App1/images/recycle_bin.png' %}" alt="Удалить">
-                        </button>
-                    </form>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
+    <div class="center">
+
+        <table>
+            <tr> <th>Неоплаченные билет</th> <th>Цена</th> <th>Удалить</th> </tr>
+            {% for ticket in unpaid_tickets %}
+                <tr>
+                    <td>{{ ticket.place }}</td>
+                    <td>{{ ticket.place.sector.price }}₽</td>
+                    <td>
+                        <form method="post">
+                            {% csrf_token %}
+                            <input hidden="hidden" name="del_ticket_id" value="{{ ticket.id }}">
+                            <button class="button" type="submit">
+                                <img class="button-image" src="{% static 'App1/images/recycle_bin.png' %}" alt="Удалить">
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <p></p>
+
+        <table>
+            <tr> <th>Оплаченные биле</th> <th>Цена</th> <th>Удалить</th> </tr>
+            {% for ticket in paid_tickets %}
+                <tr>
+                    <td>{{ ticket.place }}</td>
+                    <td>{{ ticket.place.sector.price }}₽</td>
+                    <td>
+                        <form method="post">
+                            {% csrf_token %}
+                            <input hidden="hidden" name="del_ticket_id" value="{{ ticket.id }}">
+                            <button class="button" type="submit">
+                                <img class="button-image" src="{% static 'App1/images/recycle_bin.png' %}" alt="Удалить">
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 
 </body>
 </html>

@@ -4,8 +4,8 @@ from .views import basket, matchesPage, focusMatch, add_ticket
 
 
 urlpatterns = [
-    path('basket/', basket),
-    path('matchesPage/', matchesPage),
-    path('focusMatch/', focusMatch),
-    path('add_ticket/', add_ticket),
+    path('basket/', basket, name='basket'),
+    path('matchesPage/', matchesPage, name='matchesPage'),
+    path('focusMatch/', focusMatch, name='focusMatch'),
+    path('add_ticket/', add_ticket, name='add_ticket'),
 ]

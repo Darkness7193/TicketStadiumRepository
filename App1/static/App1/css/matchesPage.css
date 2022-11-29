@@ -1,8 +1,11 @@
 .match-ticket {
     height:150px;
-    width:500px;
     border: 1px solid black;
     border-radius: 5px;
-    background: green;
+    background: #96D4D4;
+    padding: 5px;
 }
 
+.matchesBorders {
+    padding-bottom: 300px;
+}

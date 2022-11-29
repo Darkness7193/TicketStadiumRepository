@@ -59,3 +59,4 @@ def add_ticket(request):
     ticket = Ticket(place=place, match=match)
     ticket.save()
     return redirect('/App1/basket')
+

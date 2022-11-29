@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.db.models import Model, OneToOneField, CASCADE, ManyToManyField, CharField
+from django.db.models import Model, OneToOneField, CASCADE, FloatField, CharField
 
 from StadiumTickets.myShortcuts import MyManager
 

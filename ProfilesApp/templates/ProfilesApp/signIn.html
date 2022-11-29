@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="{% static '/css/global.css' %}">
 </head>
 <body>
+
+    {% include 'includes/header.html' %}
+
     <div class="center">
         <form method="post">
             {% csrf_token %}

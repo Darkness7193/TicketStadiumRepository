@@ -9,12 +9,21 @@
     <link rel="stylesheet" href="{% static 'App1/css/focusMatch.css' %}">
 </head>
 <body>
+
+    {% include 'includes/header.html' %}
+
     <div class="center">
-        <div class="match-ticket--main">
-            <p>{{ focus_match.name }}</p>
-            <p> {{ focus_match.side1 }} - {{ focus_match.side2 }}</p>
-            <p>{{ focus_match.stadium }}</p>
-            <p>{{ focus_match.date|date:"d.m.y" }} {{ focus_match.time|time:"G:i" }}</p>
+        <div class="match-ticket--main div--H">
+            <div class="helper"></div>
+            <div style="padding-left: 10px; margin: 0px auto">
+                <p>
+                    <b> {{ focus_match.name }} <br> {{ focus_match.side1 }} - {{ focus_match.side2 }} </b>
+                </p>
+            </div>
+            <div style="padding-right: 10px; margin: 0px auto">
+                <p> {{ focus_match.stadium }} <br> {{focus_match.date|date:"d.m.y" }} {{ focus_match.time|time:"G:i" }} </p>
+            </div>
+
         </div>
 
         <div class="div--H">
@@ -45,7 +54,7 @@
                 {% for free_place in free_places %}
                     <li>
                         <a href="/App1/add_ticket?place_id={{ free_place.id }}&match_id={{ focus_match.id }}">
-                            <button style="width:100%"> {{ free_place }} </button>
+                            <button class="place-button"> {{ free_place }} </button>
                         </a>
                     </li>
 

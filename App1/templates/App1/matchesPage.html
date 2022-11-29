@@ -3,28 +3,31 @@
 
 <!DOCTYPE HTML>
 <html lang="ru">
-    <head>
-        <meta charset="utf-8">
-        <title>Матчи</title>
-        <link rel="stylesheet" href="{% static '/css/global.css' %}">
-        <link rel="stylesheet" href="{% static 'App1/css/matchesPage.css' %}">
-    </head>
-    <body>
-        <a href="/App1/basket">
-            <button class="button">
-                <img class="button-image" src="{% static 'App1/images/basket.png' %}" alt="Корзина">
-            </button>
-        </a>
-        {% for match in matches %}
+<head>
+    <meta charset="utf-8">
+    <title>Матчи</title>
+    <link rel="stylesheet" href="{% static '/css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'App1/css/matchesPage.css' %}">
+</head>
+<body>
+    {% include 'includes/header.html' %}
 
-            <div class="match-ticket">
-                <b>{{ match.name }}.</b>
-                <b>{{ match.side1 }} - {{ match.side2 }}</b>
-                <p> {{ match.stadium.name }}</p>
-                <p>{{ match.date|date:"d.m.y" }} {{ match.time|time:"G:i" }}</p>
-                <a href="/App1/focusMatch?focus_match_id={{ match.id }}">Купить билеты</a>
-            </div>
-        {% endfor %}
-    </body>
+    <div class="center latex matchesBorders">
+        <ul class="scroll-ul">
+            {% for match in matches %}
+                <li>
+                    <div class="match-ticket">
+                        <b>{{ match.name }}. <br> {{ match.side1 }} - {{ match.side2 }}</b>
+                        <p> {{ match.stadium.name }}</p>
+                        <p>{{ match.date|date:"d.m.Y" }} {{ match.time|time:"G:i" }}</p>
+                        <a href="/App1/focusMatch?focus_match_id={{ match.id }}">
+                            <button>Купить билеты</button>
+                        </a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 
+</body>
 </html>

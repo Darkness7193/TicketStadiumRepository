@@ -6,5 +6,4 @@ from .views import logIn, signIn
 urlpatterns = [
     path('logIn/', logIn),
     path('signIn/', signIn),
-
 ]
