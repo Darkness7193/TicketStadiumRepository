@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Match, Place, Ticket
 
 def index(request):
-    return render(request, 'App1/index.html')
+    return redirect('/App1/matchesPage')
 
 
 def focusMatch(request):

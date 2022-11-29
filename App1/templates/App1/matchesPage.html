@@ -13,6 +13,7 @@
     {% include 'includes/header.html' %}
 
     <div class="center latex matchesBorders">
+        <h2> Матчи </h2>
         <ul class="scroll-ul">
             {% for match in matches %}
                 <li>
@@ -20,7 +21,7 @@
                         <b>{{ match.name }}. <br> {{ match.side1 }} - {{ match.side2 }}</b>
                         <p> {{ match.stadium.name }}</p>
                         <p>{{ match.date|date:"d.m.Y" }} {{ match.time|time:"G:i" }}</p>
-                        <a href="/App1/focusMatch?focus_match_id={{ match.id }}">
+                        <a href="{% url 'focusMatch'  %}?focus_match_id=match.id">
                             <button>Купить билеты</button>
                         </a>
                     </div>

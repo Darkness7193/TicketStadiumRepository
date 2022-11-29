@@ -6,13 +6,15 @@
     <meta charset="UTF-8">
     <title>Регистрация</title>
     <link rel="stylesheet" href="{% static '/css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'ProfilesApp/css/signIn.css' %}">
 </head>
 <body>
 
     {% include 'includes/header.html' %}
 
     <div class="center">
-        <form method="post">
+        <h2> Регистрация </h2>
+        <form method="post" class="sign-in-form">
             {% csrf_token %}
 
             <div class="div--V my-form">
@@ -25,10 +27,10 @@
                 <input type="password" placeholder="Введите пароль" name="password" required>
 
                 <label for="password_conf"><strong>Подтверждение пароля</strong></label>
-                <input type="password" placeholder="Введите еще раз пароль" name="password_conf" required>
+                <input type="password" placeholder="Введите пароль еще раз" name="password_conf" required>
 
                 <label for="requisites"><strong>Реквизиты</strong></label>
-                <input type="text" placeholder="Введите номер банковской карты" name="requisites" required>
+                <input type="text" placeholder="Введите банковскую карту" name="requisites" required>
 
                 <div style="height:15px"></div>
                 <button type="submit">Подтвердить</button>
