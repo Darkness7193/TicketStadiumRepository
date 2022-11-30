@@ -45,7 +45,6 @@ def matchesPage(request):
     else:
         searched_matches = Match.objects.all()
 
-
     context = {'searched_matches': searched_matches}
     return render(request, 'App1/matchesPage.html', context)
 
@@ -53,7 +52,7 @@ def matchesPage(request):
 def basket(request):
     if request.method == 'POST':
         del_ticket_id = request.POST.get('del_ticket_id')
-        Ticket.objects.filter(id=del_ticket_id).delete()
+        Ticket.objects.filter(id=del_ticket_id, host=request.user).delete()
         return redirect('/App1/basket', permanent=True)
     else:
         context = {
@@ -70,7 +69,7 @@ def add_ticket(request):
     place = Place.objects.get(id=int(place_id))
     match = Match.objects.get(id=int(match_id))
 
-    ticket = Ticket(place=place, match=match)
+    ticket = Ticket(place=place, match=match, host=request.user)
     ticket.save()
     return redirect('/App1/basket')
 

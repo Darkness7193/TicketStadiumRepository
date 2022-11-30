@@ -72,6 +72,7 @@ class Place(Model):
 class Ticket(Model):
     objects = MyManager()
 
+    host = ForeignKey(User, on_delete=CASCADE)
     place = ForeignKey(Place, on_delete=CASCADE)
     match = ForeignKey(Match, on_delete=CASCADE)
     is_paid = BooleanField(default=False)
