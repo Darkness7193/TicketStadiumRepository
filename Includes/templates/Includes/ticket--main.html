@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Ticket</title>
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'Includes/css/ticket--main.css' %}">
+</head>
+<body>
+
+        <div class="ticket--main div--H">
+            <div class="helper"></div>
+            <div style="padding-left: 10px; margin: 0px auto">
+                <p>
+                    <b> {{ match.name }} <br> {{ match.side1 }} - {{ match.side2 }} </b>
+                </p>
+            </div>
+            <div style="padding-right: 10px; margin: 0px auto">
+                <p> {{ match.stadium }} <br> {{match.date|date:"d.m.y" }} {{ match.time|time:"G:i" }} </p>
+            </div>
+
+        </div>
+
+</body>
+</html>

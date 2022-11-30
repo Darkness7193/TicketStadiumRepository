@@ -10,22 +10,12 @@
 </head>
 <body>
 
-    {% include 'includes/header.html' %}
+    {% include 'Includes/header.html' %}
 
     <div class="center">
         <h2> Выбранный матч </h2>
-        <div class="match-ticket--main div--H">
-            <div class="helper"></div>
-            <div style="padding-left: 10px; margin: 0px auto">
-                <p>
-                    <b> {{ focus_match.name }} <br> {{ focus_match.side1 }} - {{ focus_match.side2 }} </b>
-                </p>
-            </div>
-            <div style="padding-right: 10px; margin: 0px auto">
-                <p> {{ focus_match.stadium }} <br> {{focus_match.date|date:"d.m.y" }} {{ focus_match.time|time:"G:i" }} </p>
-            </div>
 
-        </div>
+        {% include 'Includes/ticket--main.html' with match=focus_match%}
 
         <div class="div--H">
             <div class="helper--V"></div>
@@ -51,7 +41,7 @@
             </form>
 
 
-            <ul class="scroll-ul">
+            <ul class="ticket-scroll-ul">
                 {% for free_place in free_places %}
                     <li>
                         <a href="/App1/add_ticket?place_id={{ free_place.id }}&match_id={{ focus_match.id }}">

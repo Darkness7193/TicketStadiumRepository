@@ -23,6 +23,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'App1',
     'ProfilesApp',
+    'Includes',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

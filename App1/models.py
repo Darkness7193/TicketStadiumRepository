@@ -47,8 +47,7 @@ class Match(Model):
 
     def __str__(self):
         return f'''
-            {self.name}.
-            {self.side1} - {self.side2}
+            {self.name} {self.side1} - {self.side2}
         '''
 
     class Meta:

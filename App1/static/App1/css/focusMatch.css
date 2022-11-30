@@ -1,12 +1,15 @@
-.match-ticket--main {
-    background: #96D4D4;
-    border-radius: 5px;
-    max-width: 500px;
-    min-width: 400px;
-}
-
 .place-button {
     width:100%;
     background: #96D4D4;
     border: 0;
+}
+
+.ticket-scroll-ul {
+    width: 200px;
+    height: 400px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border: 1px solid black;
+    padding: 0;
+    list-style: none;
 }

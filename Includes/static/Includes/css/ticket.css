@@ -1,0 +1,6 @@
+.ticket {
+    background: #96D4D4;
+    max-width: 600px;
+    min-width: 400px;
+    border-bottom: 1px solid black;
+}
