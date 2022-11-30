@@ -12,8 +12,7 @@
 
     {% include 'includes/header.html' %}
 
-    <div class="center">
-        <h2> Регистрация </h2>
+    <div class="div--H center">
         <form method="post" class="sign-in-form">
             {% csrf_token %}
 
@@ -21,16 +20,16 @@
                 <div class="helper"></div>
 
                 <label for="username"><strong>Логин</strong></label>
-                <input type="text" placeholder="Введите логин" name="username" required>
+                <input type="text" placeholder="Введите логин" name="username" id="username" required>
 
                 <label for="password"><strong>Пароль</strong></label>
-                <input type="password" placeholder="Введите пароль" name="password" required>
+                <input type="password" placeholder="Введите пароль" name="password" id="password" required>
 
                 <label for="password_conf"><strong>Подтверждение пароля</strong></label>
-                <input type="password" placeholder="Введите пароль еще раз" name="password_conf" required>
+                <input type="password" placeholder="Введите пароль еще раз" name="password_conf" id="password_conf" required>
 
                 <label for="requisites"><strong>Реквизиты</strong></label>
-                <input type="text" placeholder="Введите банковскую карту" name="requisites" required>
+                <input type="text" placeholder="Введите банковскую карту" name="requisites" id="requisites" required>
 
                 <div style="height:15px"></div>
                 <button type="submit">Подтвердить</button>

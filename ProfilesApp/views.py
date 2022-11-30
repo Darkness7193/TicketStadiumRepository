@@ -34,7 +34,6 @@ def signIn(request):
         password = form.get('password')
         password_conf = form.get('password_conf')
         requisites = form.get('requisites')
-        previousURL = request.META.get('HTTP_REFERER')
 
         haveLogin = get_or_none(User, username=username)
 
@@ -57,3 +56,8 @@ def signIn(request):
             return redirect('/App1/matchesPage')
 
     return render(request, 'ProfilesApp/signIn.html')
+
+
+def logOut(request):
+    logout(request)
+    return redirect('/App1/matchesPage')

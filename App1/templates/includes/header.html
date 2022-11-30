@@ -19,13 +19,22 @@
             <button> Корзина </button>
         </a>
 
-        <a class="a-btn a__header" href="/ProfilesApp/logIn">
-            <button> Войти </button>
-        </a>
+        {% if user.is_authenticated %}
+            <b> {{ user }} </b>
 
-        <a class="a-btn a__header" href="/ProfilesApp/signIn">
-            <button> Зарегистрироваться </button>
-        </a>
+            <a class="a-btn a__header" href="/ProfilesApp/logOut">
+                <button style="color: red"> <b> Выйти </b> </button>
+            </a>
+        {% else %}
+            <a class="a-btn a__header" href="/ProfilesApp/logIn">
+                <button> Войти </button>
+            </a>
+
+            <a class="a-btn a__header" href="/ProfilesApp/signIn">
+                <button> Зарегистрироваться </button>
+            </a>
+        {% endif %}
+
 
     </div>
 </body>
