@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -15,12 +15,14 @@ def logIn(request):
         password = form.get('password')
         user = authenticate(username=username, password=password)
 
-        if user:
-            request.user = user
-            redirect(f'/ProfilesApp/logIn')
-        else:
-            messages.error(request, 'Неверный ввод')
+        if user is None:
+            messages.error(request, 'Логин или пароль введен неверно')
             return HttpResponseRedirect(request.path_info)
+        else:
+            logout(request)
+            login(request, user)
+            return redirect('/App1/matchesPage')
+
 
     return render(request, 'ProfilesApp/logIn.html')
 
@@ -45,12 +47,13 @@ def signIn(request):
         if errors:
             for error_content in errors:
                 messages.error(request, error_content)
-            return redirect()
+            return HttpResponseRedirect(request.path_info)
         else:
-            user = User(username=username, password=password)
+            user = User(username=username)
+            user.set_password(password)
             user.save()
             profile = Profile(user=user, requisites=requisites)
             profile.save()
-            return redirect(previousURL)
+            return redirect('/App1/matchesPage')
 
     return render(request, 'ProfilesApp/signIn.html')

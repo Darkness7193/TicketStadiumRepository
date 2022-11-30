@@ -1,5 +1,10 @@
 .sign-in-form {
-     background:#96D4D4;
+    background:#96D4D4;
     padding: 1px;
     border-radius: 5px;
+    width: fit-content;
+}
+
+.messages {
+    list-style-type: none;
 }
