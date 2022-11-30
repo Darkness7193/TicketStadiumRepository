@@ -32,7 +32,20 @@ def focusMatch(request):
 
 
 def matchesPage(request):
-    context = {'matches': Match.objects.all()}
+    if request.method == 'POST':
+        search_query = request.POST.get('matches_search')
+        searched_matches = []
+
+        for match in Match.objects.all():
+            m = match.__str__()
+            if search_query in m:
+                searched_matches.append(match)
+
+    else:
+        searched_matches = Match.objects.all()
+
+
+    context = {'searched_matches': searched_matches}
     return render(request, 'App1/matchesPage.html', context)
 
 

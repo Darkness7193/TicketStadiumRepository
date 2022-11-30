@@ -14,8 +14,19 @@
 
     <div class="center latex matchesBorders">
         <h2> Матчи </h2>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="div--V my-form">
+                <div class="helper"></div>
+
+                <input type="text" placeholder="Поиск по мероприятиям" name="matches_search">
+
+            </div>
+        </form>
+
         <ul class="scroll-ul">
-            {% for match in matches %}
+            {% for match in searched_matches %}
                 <li>
                     <div class="match-ticket">
                         <b>{{ match.name }}. <br> {{ match.side1 }} - {{ match.side2 }}</b>
