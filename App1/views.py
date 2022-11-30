@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Match, Place, Ticket
 
+
 def index(request):
     return redirect('/App1/matchesPage')
 
@@ -70,6 +71,14 @@ def add_ticket(request):
     match = Match.objects.get(id=int(match_id))
 
     ticket = Ticket(place=place, match=match)
+    ticket.save()
+    return redirect('/App1/basket')
+
+
+def pay_ticket(request):
+    ticket_id = request.GET.get('ticket_id')
+    ticket = Ticket.objects.get(id=ticket_id)
+    ticket.is_paid = True
     ticket.save()
     return redirect('/App1/basket')
 

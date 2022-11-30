@@ -29,6 +29,11 @@
                             </button>
                         </form>
                     </td>
+                    <td>
+                        <a href="{% url 'pay_ticket' %}?ticket_id={{ ticket.id }}">
+                            <button> Оплатить </button>
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}
         </table>
