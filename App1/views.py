@@ -1,3 +1,5 @@
+from functools import reduce
+
 from django.shortcuts import render, redirect
 from .models import Match, Place, Ticket
 
@@ -50,9 +52,11 @@ def matchesPage(request):
 
 
 def basket(request):
+    user_tickets = Ticket.objects.filter(host=request.user)
+
     if request.method == 'POST':
         del_ticket_id = request.POST.get('del_ticket_id')
-        Ticket.objects.filter(id=del_ticket_id, host=request.user).delete()
+        user_tickets.filter(id=del_ticket_id).delete()
         return redirect('/App1/basket', permanent=True)
     else:
         context = {
