@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import basket, matchesPage, focusMatch, add_ticket, pay_ticket
+from .views import basket, matchesPage, focusMatch, add_ticket, pay_tickets
 
 
 urlpatterns = [
@@ -8,5 +8,5 @@ urlpatterns = [
     path('matchesPage/', matchesPage, name='matchesPage'),
     path('focusMatch/', focusMatch, name='focusMatch'),
     path('add_ticket/', add_ticket, name='add_ticket'),
-    path('pay_ticket/', pay_ticket, name='pay_ticket'),
+    path('pay_tickets/', pay_tickets, name='pay_tickets'),
 ]

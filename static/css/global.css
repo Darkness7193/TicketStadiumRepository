@@ -15,11 +15,17 @@
 }
 
 .center--V {
-
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -0%);
+    padding: 3px;
 }
 
 .center--H {
-
+    position: absolute;
+    top: 50%;
+    transform: translate(-0%, -50%);
+    padding: 3px;
 }
 
 .center {

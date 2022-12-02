@@ -74,10 +74,10 @@ def add_ticket(request):
     return redirect('/App1/basket')
 
 
-def pay_ticket(request):
-    ticket_id = request.GET.get('ticket_id')
-    ticket = Ticket.objects.get(id=ticket_id)
-    ticket.is_paid = True
-    ticket.save()
+def pay_tickets(request):
+    tickets = Ticket.objects.filter(host=request.user)
+    for ticket in tickets:
+        ticket.is_paid = True
+        ticket.save()
     return redirect('/App1/basket')
 

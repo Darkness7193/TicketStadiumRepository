@@ -46,9 +46,10 @@ class Match(Model):
     time = TimeField(null=True)
 
     def __str__(self):
-        return f'''
-            {self.name} {self.side1} - {self.side2}
-        '''
+        return f'{self.name} {self.side1} - {self.side2}'
+
+    def sides(self):
+        return f'{self.side1} - {self.side2}'
 
     class Meta:
         db_table = 'match'

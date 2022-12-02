@@ -14,50 +14,15 @@
 
     <div class="center">
         <h2> Корзина </h2>
-        <table>
-            <tr> <th>Неоплаченные билет</th> <th>Цена</th> <th>Удалить</th> </tr>
-            {% for ticket in unpaid_tickets %}
-                <tr>
-                    <td>{{ ticket.place }}</td>
-                    <td>{{ ticket.place.sector.price }}₽</td>
-                    <td>
-                        <form method="post">
-                            {% csrf_token %}
-                            <input hidden="hidden" name="del_ticket_id" value="{{ ticket.id }}">
-                            <button class="button" type="submit">
-                                <img class="button-image" src="{% static 'App1/images/recycle_bin.png' %}" alt="Удалить">
-                            </button>
-                        </form>
-                    </td>
-                    <td>
-                        <a href="{% url 'pay_ticket' %}?ticket_id={{ ticket.id }}">
-                            <button> Оплатить </button>
-                        </a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </table>
 
+        {% include 'Includes/ticket-table.html' with tickets=unpaid_tickets ticket_header="Неоплаченные билеты" %}
         <p></p>
+        {% include 'Includes/ticket-table.html' with tickets=paid_tickets ticket_header="Оплаченные билеты" %}
+        <p></p>
+        <a class="center--V" href="{% url 'pay_tickets' %}">
+            <button style="padding: 15px 55px"><b>Оплатить</b></button>
 
-        <table>
-            <tr> <th>Оплаченные биле</th> <th>Цена</th> <th>Удалить</th> </tr>
-            {% for ticket in paid_tickets %}
-                <tr>
-                    <td>{{ ticket.place }}</td>
-                    <td>{{ ticket.place.sector.price }}₽</td>
-                    <td>
-                        <form method="post">
-                            {% csrf_token %}
-                            <input hidden="hidden" name="del_ticket_id" value="{{ ticket.id }}">
-                            <button class="button" type="submit">
-                                <img class="button-image" src="{% static 'App1/images/recycle_bin.png' %}" alt="Удалить">
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-            {% endfor %}
-        </table>
+        </a>
     </div>
 
 </body>
