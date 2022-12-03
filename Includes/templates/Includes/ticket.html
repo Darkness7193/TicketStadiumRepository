@@ -10,7 +10,7 @@
 </head>
 <body>
 
-        <div class="ticket div--H">
+        <div class="ticket arrange--H">
             <div class="helper"></div>
             <div style="padding-left: 10px; margin: 0px auto">
                 <p>
@@ -20,7 +20,7 @@
             <div style="padding-right: 10px; margin: 0px auto">
                 <p> {{ match.stadium }} <br> {{match.date|date:"d.m.y" }} {{ match.time|time:"G:i" }} </p>
             </div>
-            <a href="{% url 'focusMatch' %}?focus_match_id={{ match.id }}">
+            <a href="{% url 'places_on_stadium' %}?focus_match_id={{ match.id }}">
                 <button> Билеты </button>
             </a>
 

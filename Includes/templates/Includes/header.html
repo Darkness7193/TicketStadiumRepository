@@ -11,26 +11,26 @@
 <body style="margin: 0; padding: 0;">
     <div class="header">
 
-        <a class="a-btn a__header" href="/App1/matchesPage">
+        <a class="a-btn a__header" href="{% url 'matches' %}">
             <button> Матчи </button>
         </a>
 
-        <a class="a-btn a__header" href="/App1/basket">
+        <a class="a-btn a__header" href="{% url 'basket' %}">
             <button> Корзина </button>
         </a>
 
         {% if user.is_authenticated %}
             <b> {{ user }} </b>
 
-            <a class="a-btn a__header" href="/ProfilesApp/logOut">
+            <a class="a-btn a__header" href="{% url 'logOut' %}">
                 <button style="color: red"> <b> Выйти </b> </button>
             </a>
         {% else %}
-            <a class="a-btn a__header" href="/ProfilesApp/logIn">
+            <a class="a-btn a__header" href="{% url 'logIn' %}">
                 <button> Войти </button>
             </a>
 
-            <a class="a-btn a__header" href="/ProfilesApp/signIn">
+            <a class="a-btn a__header" href="{% url 'signIn' %}">
                 <button> Зарегистрироваться </button>
             </a>
         {% endif %}

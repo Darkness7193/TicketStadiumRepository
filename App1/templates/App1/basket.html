@@ -13,11 +13,11 @@
     {% include 'Includes/header.html' %}
 
     <div class="center">
-        <h2> Корзина </h2>
+        <h2 style="text-align: center;"> Корзина </h2>
 
-        {% include 'Includes/ticket-table.html' with tickets=unpaid_tickets ticket_header="Неоплаченные билеты" %}
+        {% include 'Includes/ticket_table.html' with tickets=unpaid_tickets ticket_header="Неоплаченные билеты" %}
         <p></p>
-        {% include 'Includes/ticket-table.html' with tickets=paid_tickets ticket_header="Оплаченные билеты" %}
+        {% include 'Includes/ticket_table.html' with tickets=paid_tickets ticket_header="Оплаченные билеты" %}
         <p></p>
         <a class="center--V" href="{% url 'pay_tickets' %}">
             <button style="padding: 15px 55px"><b>Оплатить</b></button>
