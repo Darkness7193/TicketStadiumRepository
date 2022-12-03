@@ -13,44 +13,46 @@
     {% include 'Includes/header.html' %}
 
     <div class="center">
-        <h2> Выбранный матч </h2>
 
-        {% include 'Includes/ticket--main.html' with match=focus_match%}
-
+        <h2> Выбор места </h2>
         <div class="div--H">
-            <div class="helper--V"></div>
+            <div>
+                {% include 'Includes/ticket--main.html' with match=focus_match%}
+                <div class="div--H">
 
-            <form method="post">
-                {% csrf_token %}
+                    <form method="post">
+                        {% csrf_token %}
 
-                <div class="div--V my-form">
-                    <div class="helper"></div>
+                        <div class="div--V place-form">
+                            <div class="helper"></div>
 
-                    <label for="sector_search"><strong> Сектор </strong></label>
-                    <input type="text" name="sector_search">
+                            <label for="sector_search"><strong> Сектор </strong></label>
+                            <input type="text" name="sector_search">
 
-                    <label for="row_search"><strong> Ряд </strong></label>
-                    <input type="text" name="row_search">
+                            <label for="row_search"><strong> Ряд </strong></label>
+                            <input type="text" name="row_search">
 
-                    <label for="count_search"><strong> Номер места </strong></label>
-                    <input type="text" name="count_search">
+                            <label for="count_search"><strong> Номер места </strong></label>
+                            <input type="text" name="count_search">
 
-                    <p></p>
-                    <button type="submit">Подтвердить</button>
+                            <p></p>
+                            <button type="submit">Найти</button>
+                        </div>
+                    </form>
+
+                    <ul class="ticket-scroll-ul">
+                        {% for free_place in free_places %}
+                            <li>
+                                <a href="/App1/add_ticket?place_id={{ free_place.id }}&match_id={{ focus_match.id }}">
+                                    <button class="place-button"> {{ free_place }}: <b>{{ free_place.sector.price }}₽</b></button>
+                                </a>
+                            </li>
+
+                        {% endfor %}
+                    </ul>
                 </div>
-            </form>
-
-
-            <ul class="ticket-scroll-ul">
-                {% for free_place in free_places %}
-                    <li>
-                        <a href="/App1/add_ticket?place_id={{ free_place.id }}&match_id={{ focus_match.id }}">
-                            <button class="place-button"> {{ free_place }} </button>
-                        </a>
-                    </li>
-
-                {% endfor %}
-            </ul>
+            </div>
+            <img style="height: 300px; width: 300px;" src="{{ focus_match.stadium.map.url }}" alt="Карта_стадиона">
         </div>
     </div>
 </body>

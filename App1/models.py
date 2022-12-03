@@ -1,5 +1,5 @@
 from django.db.models import (ForeignKey, Model, CharField, IntegerField, TimeField, DateField,
-                              CASCADE, FloatField, SET_NULL, BooleanField)
+                              CASCADE, FloatField, SET_NULL, BooleanField, ImageField)
 from django.contrib.auth.models import User
 
 from StadiumTickets.myShortcuts import MyManager
@@ -26,6 +26,7 @@ class Stadium(Model):
     city = CharField(max_length=20)
     region = CharField(max_length=20)
     country = CharField(max_length=20)
+    map = ImageField()
 
     def __str__(self):
         return self.name
