@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.views.decorators.cache import never_cache
 
 from .models import Match, Place, Ticket
 
@@ -8,6 +9,7 @@ def index(request):
     return redirect(reverse('matches'))
 
 
+@never_cache
 def places_on_stadium(request):
     data = request.GET
     focus_match = Match.objects.get(id=int(data['focus_match_id']))
