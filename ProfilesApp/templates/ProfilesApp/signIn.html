@@ -12,11 +12,14 @@
 
     {% include 'Includes/header.html' %}
 
-    <div class="div--H center">
-        <form method="post" class="sign-in-form">
+    <div class="center">
+
+        <h2 style="text-align: center;"> Регистрация </h2>
+
+        <form method="post" class="sign-in-form arrange--H">
             {% csrf_token %}
 
-            <div class="div--V my-form">
+            <div class="arrange--V my-form">
                 <div class="helper"></div>
 
                 <label for="username"><strong>Логин</strong></label>
@@ -53,7 +56,3 @@
     </div>
 </body>
 </html>
-
-<!--
-oninvalid="this.setCustomValidity('Please Enter valid email')
--->

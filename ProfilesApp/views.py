@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 from .models import Profile
 from StadiumTickets.myShortcuts import get_or_none
@@ -21,8 +22,7 @@ def logIn(request):
         else:
             logout(request)
             login(request, user)
-            return redirect('/App1/matchesPage')
-
+            return redirect(reverse('matches'))
 
     return render(request, 'ProfilesApp/logIn.html')
 
@@ -53,11 +53,11 @@ def signIn(request):
             user.save()
             profile = Profile(user=user, requisites=requisites)
             profile.save()
-            return redirect('/App1/matchesPage')
+            return redirect(reverse('matches'))
 
     return render(request, 'ProfilesApp/signIn.html')
 
 
 def logOut(request):
     logout(request)
-    return redirect('/App1/matchesPage')
+    return redirect(reverse('matches'))

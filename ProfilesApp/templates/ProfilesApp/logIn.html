@@ -11,12 +11,14 @@
 <body>
 
     {% include 'Includes/header.html' %}
-    <div class="div--H center">
+    <div class="center">
 
-        <form method="post" class="sign-in-form">
+        <h2 style="text-align: center;"> Вход </h2>
+
+        <form method="post" class="sign-in-form arrange--H">
             {% csrf_token %}
 
-            <div class="div--V sign-in-wrap my-form">
+            <div class="arrange--V sign-in-wrap my-form">
                 <div class="helper"></div>
 
                 <label for="username"><strong>Логин</strong></label>

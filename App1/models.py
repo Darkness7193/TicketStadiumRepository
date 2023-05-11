@@ -1,21 +1,8 @@
 from django.db.models import (ForeignKey, Model, CharField, IntegerField, TimeField, DateField,
-                              CASCADE, FloatField, SET_NULL, BooleanField)
+                              CASCADE, FloatField, SET_NULL, BooleanField, ImageField)
 from django.contrib.auth.models import User
 
 from StadiumTickets.myShortcuts import MyManager
-
-
-class Sector(Model):
-    objects = MyManager()
-
-    shortcut = IntegerField(null=True)
-    price = IntegerField(null=True)
-
-    def __str__(self):
-        return str(self.shortcut)
-
-    class Meta:
-        db_table = 'sector'
 
 
 class Stadium(Model):
@@ -26,12 +13,28 @@ class Stadium(Model):
     city = CharField(max_length=20)
     region = CharField(max_length=20)
     country = CharField(max_length=20)
+    map = ImageField()
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
     class Meta:
         db_table = 'stadium'
+
+
+class Sector(Model):
+    objects = MyManager()
+
+    name = CharField(max_length=20, null=True)
+    shortcut = IntegerField(null=True)
+    price = IntegerField(null=True)
+    stadium = ForeignKey(Stadium, null=True, on_delete=CASCADE)
+
+    def __str__(self):
+        return str(self.shortcut)
+
+    class Meta:
+        db_table = 'sector'
 
 
 class Match(Model):
@@ -46,9 +49,10 @@ class Match(Model):
     time = TimeField(null=True)
 
     def __str__(self):
-        return f'''
-            {self.name} {self.side1} - {self.side2}
-        '''
+        return f'{self.name} {self.side1} - {self.side2}'
+
+    def sides(self):
+        return f'{self.side1} - {self.side2}'
 
     class Meta:
         db_table = 'match'
@@ -60,7 +64,6 @@ class Place(Model):
     sector = ForeignKey(Sector, on_delete=SET_NULL, null=True)
     row = IntegerField()
     count = IntegerField()
-    stadium = ForeignKey(Stadium, on_delete=CASCADE)
 
     def __str__(self):
         return f'{self.sector} сектор, {self.row} ряд, {self.count} место'

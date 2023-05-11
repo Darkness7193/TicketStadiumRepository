@@ -1,12 +1,16 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.views.decorators.cache import never_cache
+
 from .models import Match, Place, Ticket
 
 
 def index(request):
-    return redirect('/App1/matchesPage')
+    return redirect(reverse('matches'))
 
 
-def focusMatch(request):
+@never_cache
+def places_on_stadium(request):
     data = request.GET
     focus_match = Match.objects.get(id=int(data['focus_match_id']))
     reserved_places = [ticket.place.pk for ticket in Ticket.objects.filter(match=focus_match)]
@@ -29,10 +33,10 @@ def focusMatch(request):
         'focus_match': focus_match,
         'free_places': free_places,
     }
-    return render(request, 'App1/focusMatch.html', context)
+    return render(request, 'App1/places_on_stadium.html', context)
 
 
-def matchesPage(request):
+def matches(request):
     if request.method == 'POST':
         search_query = request.POST.get('matches_search')
         searched_matches = []
@@ -46,14 +50,16 @@ def matchesPage(request):
         searched_matches = Match.objects.all()
 
     context = {'searched_matches': searched_matches}
-    return render(request, 'App1/matchesPage.html', context)
+    return render(request, 'App1/matches.html', context)
 
 
 def basket(request):
+    user_tickets = Ticket.objects.filter(host=request.user)
+
     if request.method == 'POST':
         del_ticket_id = request.POST.get('del_ticket_id')
-        Ticket.objects.filter(id=del_ticket_id, host=request.user).delete()
-        return redirect('/App1/basket', permanent=True)
+        user_tickets.filter(id=del_ticket_id).delete()
+        return redirect(reverse('basket'), permanent=True)
     else:
         context = {
             'paid_tickets': Ticket.objects.filter(is_paid=True),
@@ -71,13 +77,12 @@ def add_ticket(request):
 
     ticket = Ticket(place=place, match=match, host=request.user)
     ticket.save()
-    return redirect('/App1/basket')
+    return redirect(reverse('basket'))
 
 
-def pay_ticket(request):
-    ticket_id = request.GET.get('ticket_id')
-    ticket = Ticket.objects.get(id=ticket_id)
-    ticket.is_paid = True
-    ticket.save()
-    return redirect('/App1/basket')
-
+def pay_tickets(request):
+    tickets = Ticket.objects.filter(host=request.user)
+    for ticket in tickets:
+        ticket.is_paid = True
+        ticket.save()
+    return redirect(reverse('basket'))

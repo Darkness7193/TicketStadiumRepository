@@ -1,10 +1,10 @@
-.div--V {
+.arrange--V {
     display:flex;
     flex-direction: column;
     padding: 2px;
 }
 
-.div--H {
+.arrange--H {
     display:flex;
     flex-direction: row;
     padding: 2px;
@@ -15,11 +15,10 @@
 }
 
 .center--V {
-
-}
-
-.center--H {
-
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -0%);
+    padding: 3px;
 }
 
 .center {

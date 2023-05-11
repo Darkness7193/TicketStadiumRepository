@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+    <link rel="stylesheet" href="{% static '/css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'Includes/css/ticket_table.css' %}">
+</head>
+<body>
+
+    <table style="width: 830px;">
+        <tr>
+            <th>Матч</th>
+            <th>{{ ticket_header }}</th>
+            <th>Цена</th>
+            <th>Время</th>
+            <th>Удалить</th>
+        </tr>
+        {% for ticket in tickets %}
+            <tr>
+                <td>{{ ticket.match }}</td>
+                <td>{{ ticket.place.sector.stadium }}. {{ ticket.place }}</td>
+                <td>{{ ticket.place.sector.price }}₽</td>
+                <td>{{ ticket.match.date|date:"d.m.y" }} {{ ticket.match.time|time:"G:i" }}</td>
+                <td>
+                    <form method="post">
+                        {% csrf_token %}
+                        <input hidden="hidden" name="del_ticket_id" value="{{ ticket.id }}">
+                        <button class="button" type="submit">
+                            <img class="button-image" src="{% static 'App1/images/recycle_bin.png' %}" alt="Удалить">
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
